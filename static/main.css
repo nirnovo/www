@@ -1,0 +1,86 @@
+body{
+    background: #DDD;
+}
+
+#loading{
+    width: 20%;
+    border-radius: 5px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#alert{
+    width: 50%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#saving{
+    width: 100px;
+    float: right;
+}
+
+.stack{
+    border-radius: 3px;
+    bottom: 75px;
+    box-shadow: 0 0 9px rgba(121, 126, 133, 0.15);
+    left: 85px;
+    position: absolute;
+    right: 85px;
+    top: 75px;
+}
+
+#shadowOut{
+    background-color: #fdfeff;
+    border: 1px solid #dcdde1;
+    border-radius: 3px;
+    bottom: 1px;
+    color: #3a3b3c;
+    font: 15px/20px Arial,Helvetica,sans-serif;
+    left: -2px;
+    padding: 18px 20px;
+    position: absolute;
+    right: -2px;
+    top: 0;
+}
+
+#shadowIn{
+    background-color: #fdfeff;
+    border-radius: 3px;
+    bottom: 2px;
+    box-shadow: 0 1px 0 rgba(61, 64, 67, 0.2);
+    left: -2px;
+    position: absolute;
+    right: -2px;
+    top: -1px;
+}
+
+#container{
+    background-color: #fdfeff;
+    border: 1px solid #dcdde1;
+    border-radius: 3px;
+    bottom: 1px;
+    color: #3a3b3c;
+    font: 15px/20px Arial,Helvetica,sans-serif;
+    left: -2px;
+    padding: 18px 20px;
+    position: absolute;
+    right: -2px;
+    top: 0;
+}
+
+#content{
+    background: transparent none repeat scroll 0 0;
+    border: 1px solid transparent;
+    color: #3a3b3c;
+    font: 15px/20px Arial,Helvetica,sans-serif;
+    height: 100%;
+    margin: 0;
+    overflow-y: auto;
+    padding: 0 6px 0 0;
+    resize: none;
+    white-space: pre-wrap;
+    width: 100%;
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js?version=2.1.4"></script>
+    <script src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js?version=3.3.4"></script>
+    <script src="../static/ui.js?v1"></script>
+    <script src="../static/func.js?v1"></script>
+    <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css?version=3.3.4">
+    <link rel="stylesheet" href="../static/main.css">
+
+    <script>
+        var ajax_user = "{{ username }}";
+
+        $(document).ready(function () {
+            var dbStr=`{{ t }}`;
+
+            dbStr=dbStr.replace(/&lt;/g,"<");
+            dbStr=dbStr.replace(/&gt;/g,">");
+            dbStr=dbStr.replace(/&amp/g,"&");
+            dbStr=dbStr.replace(/&quot;/g,'"');
+            dbStr=dbStr.replace(/&#39;/g,"'");
+            dbStr=dbStr.replace(/&#x2F;/g,'/');
+            dbStr=dbStr.replace(/&#34;/g,'"');
+
+            $("#content").val(dbStr);
+
+            $("#content").change(function () {
+                var saveStr = $("#content").val();
+                save_data(ajax_user, saveStr);
+            });
+        });
+
+        function save_data(uid, content) {
+            var data = {_user: uid, _content: content};
+            $.ajax({
+                type: "POST",
+                url: "{{ url_for('ajax_save') }}",
+                data: JSON.stringify(data),
+                contentType: 'application/json;charset=UTF-8',
+                success: function () {
+                    $("#saving").fadeOut(1000);
+                }
+            });
+
+        }
+    </script>
+
+    <title>{{ username }} 's NotePad</title>
+</head>
+<body>
+    <div id="loading" class="alert alert-success" role="alert">Loading...</div>
+    <div id="saving" class="alert alert-info" role="alert">Saving...</div>
+    <div id="alert" class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+        </button>
+        <strong>Warning!</strong> Better check yourself, you're not looking too good.
+    </div>
+
+    <div class="stack">
+        <div id="shadowOut">
+            <div id="shadowIn">
+                <div id="container">
+                    <textarea id="content" contenteditable="true" title="{{ username }} 's NotePad" value=""></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
