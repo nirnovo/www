@@ -4,15 +4,15 @@ import string
 import redis
 
 app = Flask(__name__)
+conn = redis.StrictRedis(host="localhost", port=6379, db=0)
 
-conn = redis.StrictRedis(host="localhost", port=6379, db=1)
 def getfromdb(username):
     conn = conndb()
-    content = conn.get(username)
+    content = conn.hget(username)
     if content is None:
         content = b""
     else:
-        content = conn.get(username)
+        content = conn.hget(username)
     return content
 
 
@@ -44,7 +44,7 @@ def ajax_save():
         print(user)
         content = request.json['_content']
         print(content)
-        conn.set(user, content)
+        conn.hset(user, content)
     return "OK"
 
 
