@@ -38,7 +38,6 @@ def users(user):
     info,times = getfromdb(user)
     print(info)
     return render_template("main.html", username=user, t=info.decode("utf-8"), times=times.decode("utf-8"))
-    # return render_template("main.html", username=user, t=info.decode("utf-8"))
 
 
 @app.route('/ajax_save', methods=["GET", "POST"])
