@@ -2,18 +2,23 @@ from flask import Flask, render_template, redirect, url_for, request
 import random
 import string
 import redis
+import time
 
 app = Flask(__name__)
-conn = redis.StrictRedis(host="localhost", port=6379, db=0)
+conn = redis.StrictRedis(host="localhost", port=6379, db=2)
 
 def getfromdb(username):
-    conn = conndb()
-    content = conn.hget(username)
+    content = conn.hget(username, "content")
     if content is None:
         content = b""
     else:
-        content = conn.hget(username)
-    return content
+        content = conn.hget(username, "content")
+   # last_time = conn.hget(time, "time")
+    if conn.hexists(username, "time"):
+        times = conn.hget(username, "time")
+    else:
+        times = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+    return content, times
 
 
 def random_user(ulength):
@@ -30,21 +35,22 @@ def index():
 
 @app.route('/<user>')
 def users(user):
-    info = getfromdb(user).decode("utf-8")
+    info,times = getfromdb(user)
     print(info)
-    return render_template("main.html", username=user, t=info)
+    return render_template("main.html", username=user, t=info.decode("utf-8"), times=times.decode("utf-8"))
     # return render_template("main.html", username=user, t=info.decode("utf-8"))
 
 
 @app.route('/ajax_save', methods=["GET", "POST"])
 def ajax_save():
     if request.method == "POST":
-        conn = conndb()
         user = request.json['_user']
         print(user)
         content = request.json['_content']
         print(content)
-        conn.hset(user, content)
+        conn.hset(user, "content", content)
+        times = time.strftime("%Y-%m-%d %H:%M:%S",time.localtime())
+        conn.hset(user, "time", times)
     return "OK"
 
 
