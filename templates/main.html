@@ -49,7 +49,6 @@
     <title>{{ username }} 's NotePad</title>
 </head>
 <body>
-    <div id="times" class="label label-success center-block" style="width:16%">Last Modified: {{ times }}</div>
     <div id="loading" class="alert alert-success" role="alert">Loading...</div>
     <div id="saving" class="alert alert-info" role="alert">Saving...</div>
     <div id="alert" class="alert alert-danger alert-dismissible" role="alert">
@@ -67,5 +66,11 @@
             </div>
         </div>
     </div>
+    <nav id="menu" class="navbar navbar-fixed-bottom navbar-center">
+        <img id="site_img" src="../static/img/site.png" alt="Cloud notepad" class="img-circle" />
+        <button type="button" class="btn btn-default">{{ username }}</button>
+        <button type="button" class="btn btn-primary">Set Password</button>
+        <label id="times" class="label bg-success" style="width:16%">Last Modified: {{ times }}</>
+    </nav>
 </body>
 </html>

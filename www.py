@@ -18,6 +18,7 @@ def getfromdb(username):
         times = conn.hget(username, "time")
     else:
         times = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+        times = times.encode(encoding='utf_8', errors='strict')
     return content, times
 
 

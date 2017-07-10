@@ -1,5 +1,6 @@
 body{
     background: #DDD;
+    height: 100%;
 }
 
 #loading{
@@ -83,4 +84,18 @@ body{
     resize: none;
     white-space: pre-wrap;
     width: 100%;
+}
+
+#menu{
+    padding-left: 6%;
+}
+
+#site_img{
+    width: 48px;
+    height: 48px;
+}
+
+#times{
+    color: #3b3b3b;
+    font-size: 12px;
 }
