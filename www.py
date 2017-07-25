@@ -1,8 +1,8 @@
-from flask import Flask, render_template, redirect, url_for, request
 import random
 import string
 import redis
 import time
+from flask import Flask, render_template, redirect, url_for, request
 
 app = Flask(__name__)
 conn = redis.StrictRedis(host="localhost", port=6379, db=2)

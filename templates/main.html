@@ -2,11 +2,11 @@
 <html lang="zh-cn">
 <head>
     <meta charset="UTF-8">
-    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js?version=2.1.4"></script>
-    <script src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js?version=3.3.4"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js?version=3.2.1"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js?version=3.3.7"></script>
     <script src="../static/ui.js?v1"></script>
     <script src="../static/func.js?v1"></script>
-    <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css?version=3.3.4">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css?version=3.3.7">
     <link rel="stylesheet" href="../static/main.css">
 
     <script>
@@ -69,9 +69,22 @@
     <nav id="menu" class="navbar navbar-fixed-bottom navbar-center">
         <img id="site_img" src="../static/img/site.png" alt="Cloud notepad" class="img-circle" />
         <button type="button" class="btn btn-default">{{ username }}</button>
-        <button type="button" class="btn btn-primary">Set Password</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#passwd">Set Password</button>
         <button type="button" class="btn btn-info">Wirte to file</button>
         <label id="times" class="label bg-success" style="width:16%">Last Modified: {{ times }}</>
     </nav>
+    <div id="passwd" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="input-group">
+                <input type="password" class="form-control" placeholder="Set Password...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">Set</button>
+                </span>
+            </div>
+       </div>
+    </div>
 </body>
+<script>
+
+</script>
 </html>
